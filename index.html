@@ -12,45 +12,46 @@
         padding: 0px;
     }
 
-    body{
+    html {
         height: 100vh;
     }
+
     table {
         width: 400px;
     }
 
     table,
     tr,
-    td {
+    td,
+    th {
         border: 1px solid #000;
     }
 
     #add-task {
-        background-color: #b4af66;
+        background-color: #ff0000;
         color: #fff;
         border-right: 50px;
         padding: 20px;
     }
-
     .box {
         display: flex;
+        flex-direction: row;
         justify-content: center;
         align-items: center;
         justify-self: center;
         margin: 10px;
     }
-
-    .table-box{
+    .table-box {
         height: 100vh;
     }
 </style>
 
 <body>
-    <div class="task-box">
+    <div class="box task-box">
         <input name="task-name" id="task-name" placeholder="New Task" />
         <button id="add-task">Add Task</button>
     </div>
-    <div class="box">
+    <div class="box table-box">
         <table>
             <tr>
                 <th>Task Name</th>
@@ -66,10 +67,11 @@
     </div>
 </body>
 <script>
-   let button = document.getElementById("add-task");
-   button.addEventListener("click", function(){
-    localStorage.setItem("task", task will be completed)
-   }
-   )
+    let button = document.getElementById("add-task");
+    button.addEventListener("click", function( ) {
+        localStorage.setItem("task", "task yha aayega input se")
+    })
+    
 </script>
+
 </html>
