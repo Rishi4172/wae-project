@@ -8,12 +8,12 @@ function loadData() {
     let storedData = JSON.parse(localStorage.getItem("allTasks"))
     storedData.map((s) => {
         table.insertAdjacentHTML("beforeend", `
-                 <tr>
-                       <td id = "taskHu">${s}</td>
-                       <td><button id = "complete-task" onclick = "completeTask(this)">Complete</button></td>
-                       <td><button id = "delete-task">Delete</button></td>
-                   </tr>  
-         `)
+                <tr>
+                    <td id="taskHu">${s}</td>
+                    <td><button id="complete-task" onclick="completeTask(this)">Complete</button></td>
+                    <td><button id="delete-task" onclick="deleteTask(this)">Delete</button></td>
+                </tr>
+    `)
     })
 }
 loadData();
@@ -24,29 +24,33 @@ function addTask() {
     inputValue = input.value;
     tasks.push(inputValue)
 }
+
+
 button.addEventListener("click", function () {
     localStorage.setItem("allTasks", JSON.stringify(tasks))
     localStorage.setItem("taskNumber", tasks.length)
     table.insertAdjacentHTML("beforeend", `
-         <tr>
-               <td>${inputValue}</td>
-               <td><button id = "complete-task" onclick = "completeTask(this)">Complete</button></td>
-                <td><button id = "delete-task" onclick = "deleteTask(this)>Delete</button></td>
-           </tr>  
- `)
- inputValue =""
- input.value =""
-
+                <tr>
+                    <td id="taskHu">${inputValue}</td>
+                    <td><button id="complete-task" onclick="completeTask(this)">Complete</button></td>
+                    <td><button id="delete-task" onclick="deleteTask(this)">Delete</button></td>
+                </tr>
+    `)
+    inputValue = ""
+    input.value = ""
 })
 
 function completeTask(e) {
     e.parentElement.parentElement.querySelector('#taskHu').classList.add("completed")
     e.disabled = true;
 }
+
 function deleteTask(e) {
     tasks.forEach(element => {
-        if (element === e.parentElement.parentElement.querySelector('#taskHu').innerText)
-       tasks.splice(tasks.indexOf(element), 1)
+        if (element === e.parentElement.parentElement.querySelector('#taskHu').innerText) {
+            tasks.splice(tasks.indexOf(element), 1)
+        }
     });
-    console.log(e)
+    localStorage.setItem('allTasks', JSON.stringify(tasks))
+    e.parentElement.parentElement.remove()
 }
